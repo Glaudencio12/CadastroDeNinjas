@@ -1,12 +1,12 @@
-package dev.javaSpring.CadastroDeNinjas;
-
+package dev.javaSpring.CadastroDeNinjas.Ninjas.Models;
+import dev.javaSpring.CadastroDeNinjas.Missoes.Models.Missoes;
 import jakarta.persistence.*;
 
 // Transforma a classe em uma entidade(Tabela) do banco de dados atravé da dependência SpringJPA
 @Entity
 // Nomeia a tabela no BD
 @Table(name = "tb_cadastro")
-public class NinjaModel {
+public class Ninja {
     // Fala pro java que é um ID
     @Id
     // Gera valores automaticamente para o Id
@@ -15,11 +15,15 @@ public class NinjaModel {
     private String nome;
     private String email;
     private int idade;
+    // @ManyToOne Um ninja tem uma única missão
+    @ManyToOne
+    @JoinColumn(name = "missoes_id")  // Foreign Key - Chave estrangeira
+    private Missoes missoes;
 
-    public NinjaModel()
+    public Ninja()
     {}
 
-    public NinjaModel(String nome, int idade, String email) {
+    public Ninja(String nome, int idade, String email) {
         this.nome = nome;
         this.idade = idade;
         this.email = email;
